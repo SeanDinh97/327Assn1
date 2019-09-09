@@ -1,4 +1,4 @@
-package com.example.a327lab1.models;
+package com.example.a327lab1;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
