@@ -32,27 +32,28 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                //Get user input
-                String name = userName.getText().toString();
-                String password = userPassword.getText().toString();
+            //Get user input
+            String name = userName.getText().toString();
+            String password = userPassword.getText().toString();
 
-                if (validateLoginCredentials(name, password)){
-                    User user = userJSONProcessor.getUser(name);
+            if (validateLoginCredentials(name, password)){
+                User user = userJSONProcessor.getUser(name);
 
-                    Intent i = new Intent(LoginActivity.this, PlaylistActivity.class);
-                    i.putExtra("name", name);
-                    i.putExtra("listOfPlaylists", user.getListOfPlaylists());
-                    startActivity(i);
+                Intent i = new Intent(LoginActivity.this, PlaylistActivity.class);
+                i.putExtra("name", name);
+                i.putExtra("listOfPlaylists", user.getListOfPlaylists());
+                startActivity(i);
 
-                    finish();
-                }
+                finish();
+            }
             }
         });
 
         navToRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(LoginActivity.this, RegisterActivity.class));
+            Intent i = new Intent(LoginActivity.this, RegisterActivity.class);
+            startActivityForResult(i, 1);
             }
         });
 
@@ -79,4 +80,13 @@ public class LoginActivity extends AppCompatActivity {
         return result;
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(resultCode==RESULT_OK){
+            Intent refresh = new Intent(this, LoginActivity.class);
+            startActivity(refresh);
+            this.finish();
+        }
+    }
 }

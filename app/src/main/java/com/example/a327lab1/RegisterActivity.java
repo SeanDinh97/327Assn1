@@ -48,6 +48,7 @@ public class RegisterActivity extends AppCompatActivity {
         navToLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                setResult(RESULT_OK, null);
                 finish();
             }
         });
