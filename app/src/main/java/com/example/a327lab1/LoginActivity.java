@@ -53,7 +53,7 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
             Intent i = new Intent(LoginActivity.this, RegisterActivity.class);
-            startActivityForResult(i, 1);
+            startActivity(i);
             }
         });
 
@@ -81,12 +81,9 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if(resultCode==RESULT_OK){
-            Intent refresh = new Intent(this, LoginActivity.class);
-            startActivity(refresh);
-            this.finish();
-        }
+    public void onResume()
+    {
+        super.onResume();
+        userJSONProcessor = new UserJSONProcessor(this);
     }
 }
