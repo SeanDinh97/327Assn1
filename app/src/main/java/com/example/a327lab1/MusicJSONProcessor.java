@@ -3,7 +3,7 @@ package com.example.a327lab1;
 import android.content.Context;
 import android.content.res.Resources;
 
-import com.example.a327lab1.models.Song;
+import com.example.a327lab1.models.Music;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -12,30 +12,30 @@ import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class SongJSONProcessor {
+public class MusicJSONProcessor {
     private Context context;
-    private ArrayList<Song> listOfSongs;
+    private ArrayList<Music> listOfMusic;
 
-    public SongJSONProcessor(Context context) {
+    public MusicJSONProcessor(Context context) {
         this.context = context;
-        this.listOfSongs = getSongsFromJSON();
+        this.listOfMusic = getMusicFromJSON();
     }
 
-    private ArrayList<Song> getSongsFromJSON() {
+    private ArrayList<Music> getMusicFromJSON() {
         Resources res = context.getResources();
         InputStream is = res.openRawResource(R.raw.music);
         Scanner scanner = new Scanner(is);
 
-        StringBuilder songSB = new StringBuilder();
+        StringBuilder musicSB = new StringBuilder();
         while (scanner.hasNextLine()) {
-            songSB.append(scanner.nextLine());
+            musicSB.append(scanner.nextLine());
         }
 
         Gson gson = new Gson();
 
-        Type songType = new TypeToken<ArrayList<Song>>() {}.getType();
-        listOfSongs = gson.fromJson(songSB.toString(), songType);
+        Type musicType = new TypeToken<ArrayList<Music>>() {}.getType();
+        listOfMusic = gson.fromJson(musicSB.toString(), musicType);
 
-        return listOfSongs;
+        return listOfMusic;
     }
 }
