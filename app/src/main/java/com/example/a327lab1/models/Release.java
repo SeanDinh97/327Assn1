@@ -8,4 +8,9 @@ public class Release {
         this.id = id;
         this.name = name;
     }
+
+    public String getReleaseDate()
+    {
+        return name;
+    }
 }
