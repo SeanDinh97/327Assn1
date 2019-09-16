@@ -27,7 +27,6 @@
         <activity
             android:name=".MainActivity"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".SongListActivity" />
         <activity
             android:name=".AddPlaylistPopup"
             android:theme="@style/AppTheme.PopupWindow" />
