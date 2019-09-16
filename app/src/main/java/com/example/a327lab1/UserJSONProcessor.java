@@ -2,6 +2,7 @@ package com.example.a327lab1;
 
 import android.content.Context;
 
+import com.example.a327lab1.models.Music;
 import com.example.a327lab1.models.Playlist;
 import com.example.a327lab1.models.User;
 import com.google.gson.Gson;
@@ -116,6 +117,26 @@ public class UserJSONProcessor {
     }
 
     /**
+     * Gets list of music from the user's playlist
+     * @param userName      User's name
+     * @param playlistName  Name of User's playlist
+     * @return  List of music
+     */
+    public ArrayList<Music> getListOfMusicFromPlaylist(String userName, String playlistName) {
+        for (int i = 0 ; i < listOfUsers.size() ; i++) {
+            if (listOfUsers.get(i).getNameOnly().equals(userName)) {
+                ArrayList<Playlist> userListOfPlaylists = listOfUsers.get(i).getListOfPlaylists();
+                for (int j = 0 ; j < userListOfPlaylists.size() ; j++) {
+                    if (userListOfPlaylists.get(i).getPlaylistName().equals(playlistName)) {
+                        return userListOfPlaylists.get(i).getListOfMusic();
+                    }
+                }
+            }
+        }
+        return new ArrayList<Music>();
+    }
+
+    /**
      * Getter method for listOfUsers
      * @return  Array of users
      */
@@ -145,11 +166,12 @@ public class UserJSONProcessor {
      * @param name  Username
      */
     public User getUser(String name) {
-        for (User myUser : listOfUsers) {
-            if (myUser.getNameOnly().equals(name)) {
-                return myUser;
+        for (int i = 0 ; i < listOfUsers.size() ; i++) {
+            if (listOfUsers.get(i).getNameOnly().equals(name)) {
+                return listOfUsers.get(i);
             }
         }
         return new User(context);
     }
+
 }
