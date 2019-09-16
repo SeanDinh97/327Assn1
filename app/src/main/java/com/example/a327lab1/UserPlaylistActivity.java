@@ -22,8 +22,8 @@ public class UserPlaylistActivity extends AppCompatActivity {
         setContentView(R.layout.activity_user_playlist);
 
         initAttributes();
-        initUIViews(view);
-        initRecyclerView(view);
+        //initUIViews(view);
+        //initRecyclerView(view);
     }
 
     private void initAttributes() {
