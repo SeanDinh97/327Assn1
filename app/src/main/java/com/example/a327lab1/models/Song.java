@@ -50,4 +50,9 @@ public class Song {
         this.time_signature = time_signature;
         this.loudness = loudness;
     }
+
+    public String getSongTitle()
+    {
+        return title;
+    }
 }

@@ -24,4 +24,9 @@ public class Artist {
         this.similar = similar;
         this.hotttnesss = hotttnesss;
     }
+
+    public String getArtistName()
+    {
+        return name;
+    }
 }

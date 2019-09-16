@@ -38,4 +38,12 @@ public class MusicJSONProcessor {
 
         return listOfMusic;
     }
+
+    public ArrayList<Music> getListOfMusic() {
+        return listOfMusic;
+    }
+
+    public void setListOfMusic(ArrayList<Music> listOfMusic) {
+        this.listOfMusic = listOfMusic;
+    }
 }
