@@ -1,16 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:padding="100dp"
     tools:context=".SplashActivity">
 
-    <TextView
-        android:id="@+id/textView"
+    <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="SPLASH SCREEN"
-        tools:layout_editor_absoluteX="174dp"
-        tools:layout_editor_absoluteY="175dp" />
-</android.support.constraint.ConstraintLayout>
+        android:layout_centerVertical="true"
+        android:src="@drawable/ic_logo" />
+</RelativeLayout>

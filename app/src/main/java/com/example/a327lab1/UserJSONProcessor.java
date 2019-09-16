@@ -2,6 +2,7 @@ package com.example.a327lab1;
 
 import android.content.Context;
 
+import com.example.a327lab1.models.Playlist;
 import com.example.a327lab1.models.User;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -28,7 +29,7 @@ public class UserJSONProcessor {
     }
 
     private ArrayList<User> deserializeUsersFromJSON() {
-        if (fileExists(USER_FILE_NAME)) {
+        if (fileExists()) {
 
             //Read from user JSON
             StringBuilder userSB = new StringBuilder();
@@ -72,12 +73,9 @@ public class UserJSONProcessor {
         }
     }
 
-    private boolean fileExists(String filename) {
-        File file = context.getFileStreamPath(filename);
-        if(file == null || !file.exists()) {
-            return false;
-        }
-        return true;
+    private boolean fileExists() {
+        File file = context.getFileStreamPath(USER_FILE_NAME);
+        return !(file == null || !file.exists());
     }
 
     public boolean hasUserName(String name) {
@@ -87,6 +85,34 @@ public class UserJSONProcessor {
             }
         }
         return false;
+    }
+
+    public void addPlaylistToUser(String userName, String playlistName) {
+        for (int i = 0 ; i < listOfUsers.size() ; i++) {
+            if ( listOfUsers.get(i).getNameOnly().equals(userName) ) {
+                listOfUsers.get(i).addPlaylist(playlistName);
+            }
+        }
+        writeUsersToJSON();
+    }
+
+    public void deletePlaylistFromUser(String userName, String playlistName) {
+        for (int i = 0 ; i < listOfUsers.size() ; i++) {
+            if ( listOfUsers.get(i).getNameOnly().equals(userName) ) {
+                listOfUsers.get(i).deletePlaylist(i);
+            }
+        }
+        writeUsersToJSON();
+    }
+
+    public ArrayList<Playlist> getListOfPlaylistsFromUser(String userName) {
+        for (int i = 0 ; i < listOfUsers.size() ; i++) {
+            if ( listOfUsers.get(i).getNameOnly().equals(userName) ) {
+                User user = getUser(userName);
+                return user.getListOfPlaylists();
+            }
+        }
+        return new ArrayList<Playlist>();
     }
 
     /**

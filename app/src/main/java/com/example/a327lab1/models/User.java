@@ -61,6 +61,15 @@ public class User {
         this.listOfPlaylists = listOfPlaylists;
     }
 
+    public void addPlaylist(String name) {
+        Playlist newPlaylist = new Playlist(name, new ArrayList<Music>());
+        this.listOfPlaylists.add(newPlaylist);
+    }
+
+    public void deletePlaylist(int index) {
+        this.listOfPlaylists.remove(index);
+    }
+
     public void removeUser() {
         sharedPreferences.edit().clear().commit();
     }

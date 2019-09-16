@@ -15,7 +15,7 @@ import java.util.ArrayList;
 
 public class RegisterActivity extends AppCompatActivity {
 
-    UserJSONProcessor userJSONProcessor;
+    private UserJSONProcessor userJSONProcessor;
 
     private EditText userName, userPassword, userPasswordConfirm;
     private Button registerButton;
@@ -26,7 +26,7 @@ public class RegisterActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
-        setupUIViews();
+        initUIViews();
 
         userJSONProcessor = new UserJSONProcessor(this);
 
@@ -53,7 +53,7 @@ public class RegisterActivity extends AppCompatActivity {
         });
     }
 
-    private void setupUIViews() {
+    private void initUIViews() {
         userName = (EditText)findViewById(R.id.etUserName);
         userPassword = (EditText)findViewById(R.id.etUserPassword);
         userPasswordConfirm = (EditText)findViewById(R.id.etUserPasswordConfirm);

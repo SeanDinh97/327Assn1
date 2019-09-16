@@ -1,13 +1,33 @@
 package com.example.a327lab1.models;
 
+import com.google.gson.annotations.Expose;
+
 import java.util.ArrayList;
 
 public class Playlist {
+    @Expose
     private String playlistName;
-    private ArrayList<Song> songs;
+    @Expose
+    private ArrayList<Music> listOfMusic;
 
-    public Playlist(String playlistName, ArrayList<Song> songs) {
+    public Playlist(String playlistName, ArrayList<Music> listOfMusic) {
         this.playlistName = playlistName;
-        this.songs = songs;
+        this.listOfMusic = listOfMusic;
+    }
+
+    public String getPlaylistName() {
+        return playlistName;
+    }
+
+    public void setPlaylistName(String playlistName) {
+        this.playlistName = playlistName;
+    }
+
+    public ArrayList<Music> getListOfMusic() {
+        return listOfMusic;
+    }
+
+    public void setListOfMusic(ArrayList<Music> listOfMusic) {
+        this.listOfMusic = listOfMusic;
     }
 }

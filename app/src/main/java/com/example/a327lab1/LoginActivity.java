@@ -13,7 +13,7 @@ import com.example.a327lab1.models.User;
 
 public class LoginActivity extends AppCompatActivity {
 
-    UserJSONProcessor userJSONProcessor;
+    private UserJSONProcessor userJSONProcessor;
 
     private EditText userName, userPassword;
     private Button loginButton;
@@ -24,7 +24,7 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        setupUIViews();
+        initUIViews();
 
         userJSONProcessor = new UserJSONProcessor(this);
 
@@ -39,12 +39,11 @@ public class LoginActivity extends AppCompatActivity {
             if (validateLoginCredentials(name, password)){
                 User user = userJSONProcessor.getUser(name);
 
-                Intent i = new Intent(LoginActivity.this, PlaylistActivity.class);
+                Intent i = new Intent(LoginActivity.this, MainActivity.class);
                 i.putExtra("name", name);
-                i.putExtra("listOfPlaylists", user.getListOfPlaylists());
                 startActivity(i);
 
-                finish();
+               finish();
             }
             }
         });
@@ -59,7 +58,7 @@ public class LoginActivity extends AppCompatActivity {
 
     }
 
-    private void setupUIViews() {
+    private void initUIViews() {
         userName = (EditText)findViewById(R.id.etUserName);
         userPassword = (EditText)findViewById(R.id.etUserPassword);
         loginButton = (Button)findViewById(R.id.btnLogin);

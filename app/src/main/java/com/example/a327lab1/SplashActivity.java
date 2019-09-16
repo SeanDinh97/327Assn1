@@ -15,7 +15,6 @@ public class SplashActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
-        getSupportActionBar().hide();
 
         final User user = new User (SplashActivity.this);
 
@@ -25,9 +24,8 @@ public class SplashActivity extends AppCompatActivity {
             @Override
             public void run() {
                 if (user.getName() != "") {
-                    Intent i = new Intent(SplashActivity.this, PlaylistActivity.class);
+                    Intent i = new Intent(SplashActivity.this, MainActivity.class);
                     i.putExtra("name", user.getName());
-                    i.putExtra("listOfPlaylists", user.getListOfPlaylists());
                     startActivity(i);
                     finish();
                 } else {
