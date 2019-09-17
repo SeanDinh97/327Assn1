@@ -3,14 +3,52 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:orientation="vertical"
-    android:background="#4D9494"
+    android:background="#FFEEEE"
     xmlns:android="http://schemas.android.com/apk/res/android">
-
-    <ListView
-        android:id="@+id/musicList"
-        android:layout_width="fill_parent"
+    <SearchView
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:dividerHeight="1dp" />
+        android:background="#FFCCCC"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/iv_left_page"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_alignParentLeft="true"
+            android:src="@drawable/ic_left" />
+
+        <TextView
+            android:id="@+id/tv_page_number"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="1 - 20"
+            android:textSize="18sp"/>
+
+        <ImageView
+            android:id="@+id/iv_right_page"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_alignParentRight="true"
+            android:src="@drawable/ic_right"/>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recycler_view_music_list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:dividerHeight="1dp" />
+
+    </RelativeLayout>
 
 
 </LinearLayout>

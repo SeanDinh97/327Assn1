@@ -19,7 +19,7 @@ public class UserMusicActivity extends AppCompatActivity {
 
     private String userName;
     private String playlistName;
-    private ArrayList<Music> userListOfMusic;
+    private ArrayList<Music> userMusicList;
 
     public TextView title, year, artist;
 
@@ -37,14 +37,14 @@ public class UserMusicActivity extends AppCompatActivity {
     private void initAttributes() {
         userName = getIntent().getExtras().getString("userName");
         playlistName = getIntent().getExtras().getString("playlistName");
-        userListOfMusic = userJSONProcessor.getListOfMusicFromPlaylist(userName, playlistName);
+        userMusicList = userJSONProcessor.getListOfMusicFromPlaylist(userName, playlistName);
     }
 
     private void initRecyclerView() {
         Log.d(TAG, "initRecyclerView: initRecyclerView");
 
         RecyclerView recyclerView = findViewById(R.id.recycler_view_user_music);
-        UserMusicAdapter adapter = new UserMusicAdapter(this, userListOfMusic);
+        UserMusicAdapter adapter = new UserMusicAdapter(this, userMusicList);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager((new LinearLayoutManager(this)));
     }

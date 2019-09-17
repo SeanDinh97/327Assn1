@@ -34,7 +34,7 @@ public class UserMusicAdapter extends RecyclerView.Adapter<UserMusicAdapter.View
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.layout_user_music_item, parent, false);
         ViewHolder holder = new ViewHolder(view);
-        return null;
+        return holder;
     }
 
     @Override
@@ -80,7 +80,7 @@ public class UserMusicAdapter extends RecyclerView.Adapter<UserMusicAdapter.View
             title = itemView.findViewById(R.id.tv_user_music_title);
             artist = itemView.findViewById(R.id.tv_user_music_artist);
             date = itemView.findViewById(R.id.tv_user_music_date);
-            parentLayout = itemView.findViewById(R.id.parent_layout_music);
+            parentLayout = itemView.findViewById(R.id.parent_layout_user_music);
 
             itemView.setOnCreateContextMenuListener(this);
         }
@@ -88,12 +88,9 @@ public class UserMusicAdapter extends RecyclerView.Adapter<UserMusicAdapter.View
         @Override
         public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
             menu.setHeaderTitle("Select The Action");
-            MenuItem rename = menu.add(1, 1, 1, "Rename");//groupId, itemId, order, title
-            MenuItem delete = menu.add(1, 2, 2, "Delete");
+            MenuItem removeSong = menu.add(1, 1, 1, "Remove Song from Playlist");//groupId, itemId, order, title
 
-            rename.setOnMenuItemClickListener(onEditMenu);
-            delete.setOnMenuItemClickListener(onEditMenu);
-
+            removeSong.setOnMenuItemClickListener(onEditMenu);
         }
 
         private final MenuItem.OnMenuItemClickListener onEditMenu = new MenuItem.OnMenuItemClickListener() {
