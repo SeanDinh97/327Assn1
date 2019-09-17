@@ -1,6 +1,7 @@
 package com.example.a327lab1;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -32,8 +33,8 @@ public class PlaylistAdapter extends RecyclerView.Adapter<PlaylistAdapter.ViewHo
 
     @NonNull
     @Override
-    public ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int viewType) {
-        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.layout_playlist_item, viewGroup, false);
+    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.layout_playlist_item, parent, false);
         ViewHolder holder = new ViewHolder(view);
         return holder;
     }
@@ -50,15 +51,13 @@ public class PlaylistAdapter extends RecyclerView.Adapter<PlaylistAdapter.ViewHo
                 //Go to UserPlaylist screen
                 Log.d(TAG, "onClick: clicked on: " + playlistNames.get(position));
 
+                String playlistName = playlistNames.get(position);
                 Toast.makeText(context, playlistNames.get(position), Toast.LENGTH_SHORT).show();
-            }
-        });
 
-        holder.parentLayout.setOnLongClickListener(new View.OnLongClickListener() {
-            @Override
-            public boolean onLongClick(View view) {
-
-                return false;
+                Intent i = new Intent(view.getContext(), UserMusicActivity.class);
+                i.putExtra("userName", userName);
+                i.putExtra("playlistName", playlistName);
+                view.getContext().startActivity(i);
             }
         });
     }
@@ -96,7 +95,6 @@ public class PlaylistAdapter extends RecyclerView.Adapter<PlaylistAdapter.ViewHo
 
             rename.setOnMenuItemClickListener(onEditMenu);
             delete.setOnMenuItemClickListener(onEditMenu);
-
         }
 
         private final MenuItem.OnMenuItemClickListener onEditMenu = new MenuItem.OnMenuItemClickListener() {
