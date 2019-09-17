@@ -97,6 +97,9 @@ public class UserJSONProcessor {
         writeUsersToJSON();
     }
 
+    /*
+     * Method to delete a playlist from the user account.
+     * */
     public void deletePlaylistFromUser(String userName, String playlistName) {
         for (int i = 0 ; i < listOfUsers.size() ; i++) {
             if ( listOfUsers.get(i).getNameOnly().equals(userName) ) {
@@ -106,6 +109,11 @@ public class UserJSONProcessor {
         writeUsersToJSON();
     }
 
+    /**
+     * Get list of playlist from user.
+     * @param userName User's name
+     * @return List of playlists from user
+     */
     public ArrayList<Playlist> getListOfPlaylistsFromUser(String userName) {
         for (int i = 0 ; i < listOfUsers.size() ; i++) {
             if ( listOfUsers.get(i).getNameOnly().equals(userName) ) {

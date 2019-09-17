@@ -9,8 +9,15 @@ import com.example.a327lab1.models.User;
 import java.util.Timer;
 import java.util.TimerTask;
 
+/**
+ * Activity page on startup of the application.
+ */
 public class SplashActivity extends AppCompatActivity {
 
+    /**
+     * Method to startup the splash activity page.
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
