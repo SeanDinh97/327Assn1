@@ -39,7 +39,7 @@ public class MusicListAdapter extends BaseAdapter {
     public View getView(int position, View convertView, ViewGroup parent) {
         ViewHolder holder;
         if (convertView == null) {
-            convertView = layoutInflater.inflate(R.layout.list_row_layout, null);
+            convertView = layoutInflater.inflate(R.layout.layout_music_list, null);
             holder = new ViewHolder();
             holder.musicTitleView = (TextView) convertView.findViewById(R.id.songTitle);
             holder.musicArtistView = (TextView) convertView.findViewById(R.id.songArtist);
