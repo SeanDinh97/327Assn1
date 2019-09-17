@@ -13,6 +13,9 @@ import com.example.a327lab1.models.User;
 
 import java.util.ArrayList;
 
+/**
+ * Registration Activity for the application.
+ */
 public class RegisterActivity extends AppCompatActivity {
 
     private UserJSONProcessor userJSONProcessor;
@@ -21,6 +24,10 @@ public class RegisterActivity extends AppCompatActivity {
     private Button registerButton;
     private TextView navToLogin;
 
+    /**
+     * Method to create and store a new user in JSON.
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -61,6 +68,13 @@ public class RegisterActivity extends AppCompatActivity {
         navToLogin = (TextView)findViewById((R.id.tvNavToLogin));
     }
 
+    /**
+     * Validation method for the user registration info.
+     * @param name username
+     * @param password user's password
+     * @param passwordConfirm password confirmation
+     * @return validation of the user's registration info.
+     */
     private boolean validate(String name, String password, String passwordConfirm){
 
         if (name.isEmpty() || password.isEmpty() || passwordConfirm.isEmpty()) {
@@ -77,6 +91,11 @@ public class RegisterActivity extends AppCompatActivity {
         return false;
     }
 
+    /**
+     * Method to store user's info into JSON.
+     * @param name username
+     * @param password user's password
+     */
     private void addUserToJSON(String name, String password) {
         User newUser = new User(name, password, new ArrayList<Playlist>(), getApplicationContext());
         userJSONProcessor.addUser(newUser);

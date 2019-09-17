@@ -11,6 +11,9 @@ import com.example.a327lab1.models.Music;
 
 import java.util.ArrayList;
 
+/**
+ * Shows the music information  in the User's playlist.
+ */
 public class UserMusicActivity extends AppCompatActivity {
 
     private static final String TAG = "UserMusicActivity";
@@ -23,6 +26,10 @@ public class UserMusicActivity extends AppCompatActivity {
 
     public TextView title, year, artist;
 
+    /**
+     * Method to start up user music page.
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

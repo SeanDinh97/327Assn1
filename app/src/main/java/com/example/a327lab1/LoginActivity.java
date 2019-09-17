@@ -19,6 +19,10 @@ public class LoginActivity extends AppCompatActivity {
     private Button loginButton;
     private TextView navToRegister;
 
+    /**
+     * Method to create a new registered user.
+     * @param savedInstanceState instance of the current state
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,32 +36,31 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-            //Get user input
-            String name = userName.getText().toString();
-            String password = userPassword.getText().toString();
+                //Get user input
+                String name = userName.getText().toString();
+                String password = userPassword.getText().toString();
 
-            if (validateLoginCredentials(name, password)){
-                User user = userJSONProcessor.getUser(name);
+                if (validateLoginCredentials(name, password)){
+                    User user = userJSONProcessor.getUser(name);
 
-                Intent i = new Intent(LoginActivity.this, MainActivity.class);
-                i.putExtra("name", name);
-                startActivity(i);
+                    Intent i = new Intent(LoginActivity.this, MainActivity.class);
+                    i.putExtra("name", name);
+                    startActivity(i);
 
-               finish();
-            }
+                    finish();
+                }
             }
         });
 
         navToRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-            Intent i = new Intent(LoginActivity.this, RegisterActivity.class);
-            startActivity(i);
+                Intent i = new Intent(LoginActivity.this, RegisterActivity.class);
+                startActivity(i);
             }
         });
 
     }
-
     private void initUIViews() {
         userName = (EditText)findViewById(R.id.etUserName);
         userPassword = (EditText)findViewById(R.id.etUserPassword);
@@ -65,6 +68,12 @@ public class LoginActivity extends AppCompatActivity {
         navToRegister = (TextView)findViewById((R.id.tvNavToRegister));
     }
 
+    /**
+     * Method to validate login credential.
+     * @param name  Username
+     * @param password  User password
+     * @return validated credentials
+     */
     private boolean validateLoginCredentials(String name, String password){
         boolean result = false;
 
@@ -79,6 +88,9 @@ public class LoginActivity extends AppCompatActivity {
         return result;
     }
 
+    /**
+     *  Method to resume the app after validation.
+     */
     @Override
     public void onResume()
     {

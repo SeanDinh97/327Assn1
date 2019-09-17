@@ -17,6 +17,9 @@ import com.example.a327lab1.models.Music;
 
 import java.util.ArrayList;
 
+/**
+ * Shows the recycle view of the music list.
+ */
 public class MusicListAdapter extends RecyclerView.Adapter<MusicListAdapter.ViewHolder> {
 
     private static final String TAG = "MusicListAdapter";
