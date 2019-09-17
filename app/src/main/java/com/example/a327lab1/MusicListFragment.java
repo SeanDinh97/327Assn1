@@ -100,8 +100,9 @@ public class MusicListFragment extends Fragment {
     }
 
     private void updatePageNumberView() {
-        int endPageNumber = pageIndex + pageSize;
-        String pageNumberString = pageIndex + " - " + endPageNumber;
+        int endPageNumber = pageIndex + pageSize + 1;
+        int startPageNumber = pageIndex + 1;
+        String pageNumberString = startPageNumber + " - " + endPageNumber;
         pageNumber.setText(pageNumberString);
     }
 
