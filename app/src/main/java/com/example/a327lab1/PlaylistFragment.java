@@ -18,6 +18,9 @@ import com.example.a327lab1.models.Playlist;
 
 import java.util.ArrayList;
 
+/**
+ * Activity's user interface of the Play List.
+ */
 public class PlaylistFragment extends Fragment {
 
     private static final String TAG = "PlaylistFragment";

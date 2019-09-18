@@ -21,6 +21,10 @@ public class MusicJSONProcessor {
         this.listOfMusic = getMusicFromJSON();
     }
 
+    /**
+     * Method to get music list from the JSON  file.
+     * @return music list in the JSON file
+     */
     private ArrayList<Music> getMusicFromJSON() {
         Resources res = context.getResources();
         InputStream is = res.openRawResource(R.raw.music);
@@ -39,10 +43,18 @@ public class MusicJSONProcessor {
         return listOfMusic;
     }
 
+    /**
+     * Get method for the ListOfMusic.
+     * @return List of music
+     */
     public ArrayList<Music> getListOfMusic() {
         return listOfMusic;
     }
 
+    /**
+     * Set method for the ListOfMusic.
+     * @param listOfMusic List of Music
+     */
     public void setListOfMusic(ArrayList<Music> listOfMusic) {
         this.listOfMusic = listOfMusic;
     }

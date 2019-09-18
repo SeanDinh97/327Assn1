@@ -24,6 +24,11 @@ public class UserMusicAdapter extends RecyclerView.Adapter<UserMusicAdapter.View
     private ArrayList<Music> listOfMusic;
     private Context context;
 
+    /**
+     * Shows the list of the music in the User's playlist.
+     * @param context
+     * @param listOfMusic
+     */
     public UserMusicAdapter(Context context, ArrayList<Music> listOfMusic) {
         this.listOfMusic = listOfMusic;
         this.context = context;

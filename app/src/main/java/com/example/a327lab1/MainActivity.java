@@ -21,6 +21,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     public UserJSONProcessor userJSONProcessor;
 
+    /**
+     * Method to display the home page.
+     * @param savedInstanceState instance of the current state
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,6 +50,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }
     }
 
+    /**
+     * Navigation method on the home page.
+     * @param menuItem item's in the menu
+     * @return menu items of the home page
+     */
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
         switch (menuItem.getItemId()) {
@@ -70,6 +79,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         return true;
     }
 
+    /**
+     * Method to back press from the main activity.
+     */
     @Override
     public void onBackPressed() {
         if (drawer.isDrawerOpen(GravityCompat.START)) {
@@ -79,6 +91,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }
     }
 
+    /**
+     * View method for the user info in Main Activity.
+     */
     private void initUIViews() {
         navView = (NavigationView)findViewById(R.id.nav_view) ;
         navView.setNavigationItemSelectedListener(this);
@@ -88,6 +103,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         userName = (TextView)headerView.findViewById(R.id.tvUserName);
     }
 
+    /**
+     * Method to resume main activity.
+     */
     @Override
     public void onResume()
     {

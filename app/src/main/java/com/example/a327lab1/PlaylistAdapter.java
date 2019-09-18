@@ -17,6 +17,9 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 
+/**
+ * Shows the recycle view of the play list.
+ */
 public class PlaylistAdapter extends RecyclerView.Adapter<PlaylistAdapter.ViewHolder>{
 
     private static final String TAG = "PlaylistAdapter";
