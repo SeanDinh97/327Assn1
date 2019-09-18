@@ -30,4 +30,8 @@ public class Playlist {
     public void setListOfMusic(ArrayList<Music> listOfMusic) {
         this.listOfMusic = listOfMusic;
     }
+
+    public void addMusicToPlaylist(Music music) {
+        listOfMusic.add(music);
+    }
 }

@@ -1,28 +1,55 @@
 package com.example.a327lab1.models;
 
-public class Song {
+import com.google.gson.annotations.Expose;
+
+import java.io.Serializable;
+
+public class Song implements Serializable {
+    @Expose
     private double key;
+    @Expose
     private double mode_confidence;
+    @Expose
     private double artist_mbtags_count;
+    @Expose
     private double key_confidence;
+    @Expose
     private double tatums_start;
+    @Expose
     private int year;
+    @Expose
     private double duration;
+    @Expose
     private double hotttnesss;
+    @Expose
     private double beats_start;
+    @Expose
     private double time_signature_confidence;
+    @Expose
     private String title;
+    @Expose
     private double bars_confidence;
+    @Expose
     private String id;
+    @Expose
     private double bars_start;
+    @Expose
     private String artist_mbtags;
+    @Expose
     private double start_of_fade_out;
+    @Expose
     private double tempo;
+    @Expose
     private double end_of_fade_in;
+    @Expose
     private double beats_confidence;
+    @Expose
     private double tatums_confidence;
+    @Expose
     private int mode;
+    @Expose
     private double time_signature;
+    @Expose
     private double loudness;
 
     public Song(double key, double mode_confidence, double artist_mbtags_count, double key_confidence, double tatums_start, int year, double duration, double hotttnesss, double beats_start, double time_signature_confidence, String title, double bars_confidence, String id, double bars_start, String artist_mbtags, double start_of_fade_out, double tempo, double end_of_fade_in, double beats_confidence, double tatums_confidence, int mode, double time_signature, double loudness) {

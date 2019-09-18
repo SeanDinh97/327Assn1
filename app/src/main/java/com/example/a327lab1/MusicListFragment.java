@@ -74,7 +74,7 @@ public class MusicListFragment extends Fragment {
     }
 
     private void initAttributes() {
-        userName = getActivity().getIntent().getExtras().getString("userName");
+        userName = getActivity().getIntent().getExtras().getString("name");
         musicList = musicJSONProcessor.getListOfMusic();
         musicPageList = new ArrayList<Music>(musicList.subList(pageIndex, pageIndex + 19));
         pageIndex = 0;
@@ -90,11 +90,10 @@ public class MusicListFragment extends Fragment {
         Log.d(TAG, "initRecyclerView: initRecyclerView");
 
         recyclerView = view.findViewById(R.id.recycler_view_music_list);
-
     }
 
     private void updateRecyclerView(View view) {
-        MusicListAdapter adapter = new MusicListAdapter(getContext(), musicPageList);
+        MusicListAdapter adapter = new MusicListAdapter(getContext(), musicPageList, userName);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager((new LinearLayoutManager(getContext())));
     }

@@ -1,6 +1,7 @@
 package com.example.a327lab1;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -15,16 +16,19 @@ import android.widget.Toast;
 
 import com.example.a327lab1.models.Music;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 public class MusicListAdapter extends RecyclerView.Adapter<MusicListAdapter.ViewHolder> {
 
     private static final String TAG = "MusicListAdapter";
     private ArrayList<Music> listOfMusic;
+    private String userName;
     private Context context;
 
-    public MusicListAdapter(Context context, ArrayList<Music> listOfMusic) {
+    public MusicListAdapter(Context context, ArrayList<Music> listOfMusic, String userName) {
         this.listOfMusic = listOfMusic;
+        this.userName = userName;
         this.context = context;
     }
 
@@ -42,7 +46,7 @@ public class MusicListAdapter extends RecyclerView.Adapter<MusicListAdapter.View
 
         holder.title.setText(listOfMusic.get(position).getSongTitle());
         holder.artist.setText(listOfMusic.get(position).getArtistName());
-        holder.date.setText(listOfMusic.get(position).getReleaseDate());
+        holder.id.setText(listOfMusic.get(position).getRelease().getId());
 
         holder.parentLayout.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -68,17 +72,17 @@ public class MusicListAdapter extends RecyclerView.Adapter<MusicListAdapter.View
         return listOfMusic.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnCreateContextMenuListener  {
+    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnCreateContextMenuListener {
         TextView title;
         TextView artist;
-        TextView date;
+        TextView id;
         RelativeLayout parentLayout;
 
         public ViewHolder(View itemView) {
             super(itemView);
             title = itemView.findViewById(R.id.tv_music_title);
             artist = itemView.findViewById(R.id.tv_music_artist);
-            date = itemView.findViewById(R.id.tv_music_date);
+            id = itemView.findViewById(R.id.tv_music_id);
             parentLayout = itemView.findViewById(R.id.parent_layout_music);
 
             itemView.setOnCreateContextMenuListener(this);
@@ -98,8 +102,12 @@ public class MusicListAdapter extends RecyclerView.Adapter<MusicListAdapter.View
 
                 switch (item.getItemId()) {
                     case 1:
-                        //Implement Remove song from playlist feature
-                        Toast.makeText(context, "Implement Remove Song From Playlist function", Toast.LENGTH_SHORT).show();
+                        //Implement Add song to Playlist Feature
+                        Toast.makeText(context, "Navigate to Add song to playlist screen", Toast.LENGTH_SHORT).show();
+                        Intent i = new Intent(context, AddMusicToPlaylistActivity.class);
+                        i.putExtra("userName", userName);
+                        i.putExtra("music", listOfMusic.get(getLayoutPosition()));
+                        context.startActivity(i);
                         break;
                 }
                 return true;

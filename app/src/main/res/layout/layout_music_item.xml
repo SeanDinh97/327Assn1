@@ -24,7 +24,7 @@
         android:text="artist"/>
 
     <TextView
-        android:id="@+id/tv_music_date"
+        android:id="@+id/tv_music_id"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignBaseline="@+id/tv_music_artist"

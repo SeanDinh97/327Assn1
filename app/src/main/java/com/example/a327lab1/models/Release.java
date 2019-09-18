@@ -1,10 +1,16 @@
 package com.example.a327lab1.models;
 
-public class Release {
-    private int id;
+import com.google.gson.annotations.Expose;
+
+import java.io.Serializable;
+
+public class Release implements Serializable {
+    @Expose
+    private String id;
+    @Expose
     private String name;
 
-    public Release(int id, String name) {
+    public Release(String id, String name) {
         this.id = id;
         this.name = name;
     }
@@ -13,4 +19,6 @@ public class Release {
     {
         return name;
     }
+
+    public String getId() { return id; }
 }

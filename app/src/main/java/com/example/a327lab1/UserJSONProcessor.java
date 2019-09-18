@@ -117,6 +117,25 @@ public class UserJSONProcessor {
     }
 
     /**
+     * Adds music to user's playlist
+     * @param userName      User's name
+     * @param playlistName  Playlist name
+     * @param music         Music object being added
+     */
+    public void addMusicToPlaylist(String userName, String playlistName, Music music) {
+        for (int i = 0 ; i < listOfUsers.size() ; i++) {
+            if (listOfUsers.get(i).getNameOnly().equals(userName)) {
+                for (int j = 0 ; j < listOfUsers.get(i).getListOfPlaylists().size() ; j++) {
+                    if (listOfUsers.get(i).getListOfPlaylists().get(j).getPlaylistName().equals(playlistName)) {
+                        listOfUsers.get(i).getListOfPlaylists().get(j).addMusicToPlaylist(music);
+                    }
+                }
+            }
+        }
+        writeUsersToJSON();
+    }
+
+    /**
      * Gets list of music from the user's playlist
      * @param userName      User's name
      * @param playlistName  Name of User's playlist
@@ -125,10 +144,9 @@ public class UserJSONProcessor {
     public ArrayList<Music> getListOfMusicFromPlaylist(String userName, String playlistName) {
         for (int i = 0 ; i < listOfUsers.size() ; i++) {
             if (listOfUsers.get(i).getNameOnly().equals(userName)) {
-                ArrayList<Playlist> userListOfPlaylists = listOfUsers.get(i).getListOfPlaylists();
-                for (int j = 0 ; j < userListOfPlaylists.size() ; j++) {
-                    if (userListOfPlaylists.get(i).getPlaylistName().equals(playlistName)) {
-                        return userListOfPlaylists.get(i).getListOfMusic();
+                for (int j = 0 ; j < listOfUsers.get(i).getListOfPlaylists().size() ; j++) {
+                    if (listOfUsers.get(i).getListOfPlaylists().get(j).getPlaylistName().equals(playlistName)) {
+                        return listOfUsers.get(i).getListOfPlaylists().get(j).getListOfMusic();
                     }
                 }
             }
