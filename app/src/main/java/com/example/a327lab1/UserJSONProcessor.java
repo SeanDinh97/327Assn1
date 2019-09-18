@@ -21,14 +21,24 @@ import java.util.ArrayList;
 public class UserJSONProcessor {
     private static final String USER_FILE_NAME = "users.json";
 
+    /** Activity's context */
     private Context context;
+    /** ArrayList of users */
     private ArrayList<User> listOfUsers;
 
+    /**
+     * Constructor for UserJSONProcessor
+     * @param context   Activity's context
+     */
     public UserJSONProcessor(Context context) {
         this.context = context;
         this.listOfUsers = deserializeUsersFromJSON();
     }
 
+    /**
+     * Reads from user.json file and stores it to User ArrayList
+     * @return  ArrayList of Users from user.json file
+     */
     private ArrayList<User> deserializeUsersFromJSON() {
         if (fileExists()) {
 
@@ -59,6 +69,9 @@ public class UserJSONProcessor {
         return listOfUsers;
     }
 
+    /**
+     * Updates user.json file
+     */
     private void writeUsersToJSON() {
         Gson gson = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().setPrettyPrinting().create();
         String json = gson.toJson(listOfUsers);
@@ -74,11 +87,20 @@ public class UserJSONProcessor {
         }
     }
 
+    /**
+     * Checks if user.json file exists
+     * @return  True if file exists; False otherwise
+     */
     private boolean fileExists() {
         File file = context.getFileStreamPath(USER_FILE_NAME);
         return !(file == null || !file.exists());
     }
 
+    /**
+     * Searches for username in the user.json file
+     * @param name  Username being searched
+     * @return  True if user exists; False otherwise
+     */
     public boolean hasUserName(String name) {
         for (User myUser : listOfUsers) {
             if (myUser.getNameOnly().equals(name)) {
@@ -88,6 +110,11 @@ public class UserJSONProcessor {
         return false;
     }
 
+    /**
+     * Adds playlist to user's account
+     * @param userName  User
+     * @param playlistName  Playlist being added
+     */
     public void addPlaylistToUser(String userName, String playlistName) {
         for (int i = 0 ; i < listOfUsers.size() ; i++) {
             if ( listOfUsers.get(i).getNameOnly().equals(userName) ) {
@@ -97,9 +124,11 @@ public class UserJSONProcessor {
         writeUsersToJSON();
     }
 
-    /*
-     * Method to delete a playlist from the user account.
-     * */
+    /**
+     * Method that deletes playlist from user's account
+     * @param userName  User
+     * @param playlistName  Playlist being deleted
+     */
     public void deletePlaylistFromUser(String userName, String playlistName) {
         for (int i = 0 ; i < listOfUsers.size() ; i++) {
             if ( listOfUsers.get(i).getNameOnly().equals(userName) ) {
