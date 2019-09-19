@@ -55,7 +55,7 @@ public class MusicListAdapter extends RecyclerView.Adapter<MusicListAdapter.View
 
         holder.title.setText(listOfMusic.get(position).getSongTitle());
         holder.artist.setText(listOfMusic.get(position).getArtistName());
-        holder.id.setText(listOfMusic.get(position).getRelease().getId());
+        holder.terms.setText(listOfMusic.get(position).getArtist().getTerms());
 
         holder.parentLayout.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -95,14 +95,14 @@ public class MusicListAdapter extends RecyclerView.Adapter<MusicListAdapter.View
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnCreateContextMenuListener {
         TextView title;
         TextView artist;
-        TextView id;
+        TextView terms;
         RelativeLayout parentLayout;
 
         public ViewHolder(View itemView) {
             super(itemView);
             title = itemView.findViewById(R.id.tv_music_title);
             artist = itemView.findViewById(R.id.tv_music_artist);
-            id = itemView.findViewById(R.id.tv_music_id);
+            terms = itemView.findViewById(R.id.tv_music_terms);
             parentLayout = itemView.findViewById(R.id.parent_layout_music);
 
             itemView.setOnCreateContextMenuListener(this);
