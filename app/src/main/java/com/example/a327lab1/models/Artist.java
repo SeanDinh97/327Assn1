@@ -43,4 +43,9 @@ public class Artist implements Serializable {
     {
         return name;
     }
+    public String getTerms()
+    {
+
+        return terms;
+    }
 }

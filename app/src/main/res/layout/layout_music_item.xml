@@ -24,13 +24,13 @@
         android:text="artist"/>
 
     <TextView
-        android:id="@+id/tv_music_id"
+        android:id="@+id/tv_music_terms"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignBaseline="@+id/tv_music_artist"
         android:layout_alignParentRight="true"
         android:textColor="#343434"
         android:textSize="12sp"
-        android:text="date"/>
+        android:text="genre"/>
 
 </RelativeLayout>
