@@ -1,6 +1,7 @@
 package com.example.a327lab1;
 
 import android.content.Context;
+import android.media.MediaPlayer;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -21,8 +22,10 @@ public class UserMusicAdapter extends RecyclerView.Adapter<UserMusicAdapter.View
 
     private static final String TAG = "UserMusicAdapter";
 
+    private MediaPlayer mp;
     private ArrayList<Music> listOfMusic;
     private Context context;
+    private String currentlyPlaying;
 
     /**
      * Shows the list of the music in the User's playlist.
@@ -56,7 +59,25 @@ public class UserMusicAdapter extends RecyclerView.Adapter<UserMusicAdapter.View
                 //Play the music!
                 Log.d(TAG, "onClick: clicked on: " + listOfMusic.get(position).getSongTitle());
 
-                Toast.makeText(context, listOfMusic.get(position).getSongTitle(), Toast.LENGTH_SHORT).show();
+                if (mp != null && !currentlyPlaying.equals(listOfMusic.get(position).getSongTitle())) {
+                    mp.stop();
+                    mp.release();
+                    mp = MediaPlayer.create(context,R.raw.imperial);
+                    mp.start();
+                    currentlyPlaying = listOfMusic.get(position).getSongTitle();
+                    Toast.makeText(context, currentlyPlaying + " is now playing.", Toast.LENGTH_SHORT).show();
+                } else if (mp != null){
+                    mp.stop();
+                    mp.release();
+                    mp = null;
+                    Toast.makeText(context, "Stopped playing " + currentlyPlaying, Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(context, listOfMusic.get(position).getSongTitle() + " is now playing.", Toast.LENGTH_SHORT).show();
+                    mp = MediaPlayer.create(context,R.raw.imperial);
+                    mp.start();
+                    currentlyPlaying = listOfMusic.get(position).getSongTitle();
+                    Toast.makeText(context, "Stopped playing " + currentlyPlaying, Toast.LENGTH_SHORT).show();
+                }
             }
         });
 

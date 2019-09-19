@@ -2,6 +2,7 @@ package com.example.a327lab1;
 
 import android.content.Context;
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -16,6 +17,8 @@ import android.widget.Toast;
 
 import com.example.a327lab1.models.Music;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
 
@@ -25,14 +28,17 @@ import java.util.ArrayList;
 public class MusicListAdapter extends RecyclerView.Adapter<MusicListAdapter.ViewHolder> {
 
     private static final String TAG = "MusicListAdapter";
+    private MediaPlayer mp;
     private ArrayList<Music> listOfMusic;
     private String userName;
     private Context context;
+    private String currentlyPlaying;
 
     public MusicListAdapter(Context context, ArrayList<Music> listOfMusic, String userName) {
         this.listOfMusic = listOfMusic;
         this.userName = userName;
         this.context = context;
+        this.currentlyPlaying = "";
     }
 
     @NonNull
@@ -57,15 +63,26 @@ public class MusicListAdapter extends RecyclerView.Adapter<MusicListAdapter.View
                 //Play the music!
                 Log.d(TAG, "onClick: clicked on: " + listOfMusic.get(position).getSongTitle());
 
-                Toast.makeText(context, listOfMusic.get(position).getSongTitle(), Toast.LENGTH_SHORT).show();
-            }
-        });
+                if (mp != null && !currentlyPlaying.equals(listOfMusic.get(position).getSongTitle())) {
+                    mp.stop();
+                    mp.release();
+                    mp = MediaPlayer.create(context,R.raw.imperial);
+                    mp.start();
+                    currentlyPlaying = listOfMusic.get(position).getSongTitle();
+                    Toast.makeText(context, currentlyPlaying + " is now playing.", Toast.LENGTH_SHORT).show();
+                } else if (mp != null){
+                    mp.stop();
+                    mp.release();
+                    mp = null;
+                    Toast.makeText(context, "Stopped playing " + currentlyPlaying, Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(context, listOfMusic.get(position).getSongTitle() + " is now playing.", Toast.LENGTH_SHORT).show();
+                    mp = MediaPlayer.create(context,R.raw.imperial);
+                    mp.start();
+                    currentlyPlaying = listOfMusic.get(position).getSongTitle();
+                    Toast.makeText(context, "Stopped playing " + currentlyPlaying, Toast.LENGTH_SHORT).show();
+                }
 
-        holder.parentLayout.setOnLongClickListener(new View.OnLongClickListener() {
-            @Override
-            public boolean onLongClick(View view) {
-                //Open menu: 1.Remove song from playlist
-                return false;
             }
         });
     }
@@ -106,7 +123,6 @@ public class MusicListAdapter extends RecyclerView.Adapter<MusicListAdapter.View
                 switch (item.getItemId()) {
                     case 1:
                         //Implement Add song to Playlist Feature
-                        Toast.makeText(context, "Navigate to Add song to playlist screen", Toast.LENGTH_SHORT).show();
                         Intent i = new Intent(context, AddMusicToPlaylistActivity.class);
                         i.putExtra("userName", userName);
                         i.putExtra("music", listOfMusic.get(getLayoutPosition()));

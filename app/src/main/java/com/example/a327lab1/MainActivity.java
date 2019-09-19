@@ -18,6 +18,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private NavigationView navView;
     private DrawerLayout drawer;
     private TextView userName;
+    private Toolbar toolbar;
 
     public UserJSONProcessor userJSONProcessor;
 
@@ -30,7 +31,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Toolbar toolbar = findViewById(R.id.toolbar);
+        toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
         initUIViews();
@@ -44,6 +45,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         //Open Playlist Screen by default
         if (savedInstanceState == null) {
+            toolbar.setTitle("Playlists");
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                     new PlaylistFragment()).commit();
             navView.setCheckedItem(R.id.nav_playlist);
@@ -59,10 +61,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
         switch (menuItem.getItemId()) {
             case R.id.nav_playlist:
+                toolbar.setTitle("Playlists");
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                         new PlaylistFragment()).commit();
                 break;
             case R.id.nav_musiclist:
+                toolbar.setTitle("Song List");
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                         new MusicListFragment()).commit();
                 break;

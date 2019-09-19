@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.SearchView;
 import android.widget.TextView;
 
 import com.example.a327lab1.models.Music;
@@ -22,30 +23,34 @@ import java.util.ArrayList;
 public class MusicListFragment extends Fragment {
 
     public static final String TAG = "MusicListFragment";
-    public static final int pageSize = 19;
+    public static final int pageSize = 20;
 
     private MusicJSONProcessor musicJSONProcessor;
 
     private RecyclerView recyclerView;
 
+    private TextView totalMusic;
     private TextView pageNumber;
     private ImageView leftBtn;
     private ImageView rightBtn;
+    private SearchView searchEntry;
 
     private ArrayList<Music> musicList;
+    private ArrayList<Music> searchList;
     private ArrayList<Music> musicPageList;
     private int pageIndex;
+    private int endPageIndex;
     private String userName;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_music_list, container, false);
+        final View view = inflater.inflate(R.layout.fragment_music_list, container, false);
 
         musicJSONProcessor = new MusicJSONProcessor(getContext());
 
-        initAttributes();
         initUIViews(view);
+        initAttributes();
         initRecyclerView(view);
         updateRecyclerView(view);
 
@@ -53,8 +58,9 @@ public class MusicListFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 if (pageIndex > 0) {
-                    pageIndex -= pageSize + 1;
-                    musicPageList = new ArrayList<Music>(musicList.subList(pageIndex, pageIndex + pageSize));
+                    pageIndex -= pageSize;
+                    endPageIndex -= pageSize;
+                    musicPageList = new ArrayList<Music>(musicList.subList(pageIndex, endPageIndex));
                     updateRecyclerView(view);
                     updatePageNumberView();
                 }
@@ -64,12 +70,42 @@ public class MusicListFragment extends Fragment {
         rightBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (pageIndex + pageSize < musicList.size()) {
-                    pageIndex += pageSize + 1;
-                    musicPageList = new ArrayList<Music>(musicList.subList(pageIndex, pageIndex + pageSize));
+                if (pageIndex + pageSize < searchList.size()) {
+                    pageIndex += pageSize;
+                    endPageIndex += pageSize;
+                    if (pageIndex + pageSize > searchList.size()) {
+                        endPageIndex = searchList.size();
+                    } else {
+                        endPageIndex = pageIndex + pageSize;
+                    }
+                    musicPageList = new ArrayList<Music>(searchList.subList(pageIndex, endPageIndex));
                     updateRecyclerView(view);
                     updatePageNumberView();
                 }
+            }
+        });
+
+        searchEntry.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String s) {
+                searchList = getSearchMusicList(s);
+                pageIndex = 0;
+                if (pageIndex + pageSize > searchList.size()) {
+                    endPageIndex = searchList.size();
+                } else {
+                    endPageIndex = pageIndex + pageSize;
+                }
+                musicPageList = new ArrayList<Music>(searchList.subList(pageIndex, endPageIndex));
+                totalMusic.setText(String.valueOf(searchList.size()));
+                updateRecyclerView(view);
+                updatePageNumberView();
+
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String s) {
+                return false;
             }
         });
 
@@ -79,14 +115,19 @@ public class MusicListFragment extends Fragment {
     private void initAttributes() {
         userName = getActivity().getIntent().getExtras().getString("name");
         musicList = musicJSONProcessor.getListOfMusic();
-        musicPageList = new ArrayList<Music>(musicList.subList(pageIndex, pageIndex + 19));
+        searchList = musicList;
+        musicPageList = new ArrayList<Music>(searchList.subList(pageIndex, pageIndex + 19));
         pageIndex = 0;
+        endPageIndex = pageIndex + pageSize;
+        totalMusic.setText(String.valueOf(searchList.size()));
     }
 
     private void initUIViews(View view) {
         pageNumber = view.findViewById(R.id.tv_page_number);
         leftBtn = view.findViewById(R.id.iv_left_page);
         rightBtn = view.findViewById(R.id.iv_right_page);
+        searchEntry = view.findViewById(R.id.search_music);
+        totalMusic = view.findViewById(R.id.tv_total_songs);
     }
 
     private void initRecyclerView(View view) {
@@ -102,10 +143,20 @@ public class MusicListFragment extends Fragment {
     }
 
     private void updatePageNumberView() {
-        int endPageNumber = pageIndex + pageSize + 1;
         int startPageNumber = pageIndex + 1;
-        String pageNumberString = startPageNumber + " - " + endPageNumber;
+        String pageNumberString = startPageNumber + " - " + endPageIndex;
         pageNumber.setText(pageNumberString);
+    }
+
+    private ArrayList<Music> getSearchMusicList(String search) {
+        ArrayList<Music> searchArray = new ArrayList<Music>();
+        for (int i = 0 ; i < musicList.size() ; i++) {
+            if (musicList.get(i).getArtist().getArtistName().contains(search) ||
+                    musicList.get(i).getSong().getSongTitle().contains(search)) {
+                searchArray.add(musicList.get(i));
+            }
+        }
+        return searchArray;
     }
 
 }
