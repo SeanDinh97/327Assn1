@@ -28,6 +28,12 @@ public class PlaylistAdapter extends RecyclerView.Adapter<PlaylistAdapter.ViewHo
     private ArrayList<String> playlistNames;
     private Context context;
 
+    /**
+     * Constructor method for playlist adapter.
+     * @param userName user
+     * @param playlistNames playlist name
+     * @param context playlist info
+     */
     public PlaylistAdapter(String userName, ArrayList<String> playlistNames, Context context) {
         this.userName = userName;
         this.playlistNames = playlistNames;
@@ -42,6 +48,11 @@ public class PlaylistAdapter extends RecyclerView.Adapter<PlaylistAdapter.ViewHo
         return holder;
     }
 
+    /**
+     * View holder for the playlist
+     * @param holder view holder
+     * @param position position of the playlist
+     */
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
         Log.d(TAG, "onBindViewHolder: called.");
@@ -65,22 +76,37 @@ public class PlaylistAdapter extends RecyclerView.Adapter<PlaylistAdapter.ViewHo
         });
     }
 
+    /**
+     * Get method for the playlist name.
+     * @return playlist's name
+     */
     @Override
     public int getItemCount() {
         return playlistNames.size();
     }
 
+    /**
+     * Method to remove a playlist at a specific position.
+     * @param position of the playlist
+     */
     public void removeAt(int position) {
         playlistNames.remove(position);
         notifyItemRemoved(position);
         notifyItemRangeChanged(position, playlistNames.size());
     }
 
+    /**
+     * Method to hold the recycle view of the playlist.
+     */
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnCreateContextMenuListener {
         ImageView image;
         TextView name;
         RelativeLayout parentLayout;
 
+        /**
+         * Playlist information
+         * @param itemView item view of playlist
+         */
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             image = itemView.findViewById(R.id.playlist_image);
@@ -90,6 +116,12 @@ public class PlaylistAdapter extends RecyclerView.Adapter<PlaylistAdapter.ViewHo
             itemView.setOnCreateContextMenuListener(this);
         }
 
+        /**
+         * Method for the onclick menu option.
+         * @param menu menu
+         * @param v view of the menu
+         * @param menuInfo menu info
+         */
         @Override
         public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
             menu.setHeaderTitle("Select The Action");
@@ -100,6 +132,9 @@ public class PlaylistAdapter extends RecyclerView.Adapter<PlaylistAdapter.ViewHo
             delete.setOnMenuItemClickListener(onEditMenu);
         }
 
+        /**
+         * On click listener for the playlist menu.
+         */
         private final MenuItem.OnMenuItemClickListener onEditMenu = new MenuItem.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem item) {

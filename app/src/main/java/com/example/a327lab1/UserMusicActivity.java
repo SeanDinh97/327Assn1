@@ -24,6 +24,9 @@ public class UserMusicActivity extends AppCompatActivity {
     private String playlistName;
     private ArrayList<Music> userMusicList;
 
+    /**
+     * Text view of the music info.
+     */
     public TextView title, year, artist;
 
     /**
@@ -41,12 +44,18 @@ public class UserMusicActivity extends AppCompatActivity {
         initRecyclerView();
     }
 
+    /**
+     * Method to initialize attributes of the user music activity.
+     */
     private void initAttributes() {
         userName = getIntent().getExtras().getString("userName");
         playlistName = getIntent().getExtras().getString("playlistName");
         userMusicList = userJSONProcessor.getListOfMusicFromPlaylist(userName, playlistName);
     }
 
+    /**
+     * Recycle View of the user music list.
+     */
     private void initRecyclerView() {
         Log.d(TAG, "initRecyclerView: initRecyclerView");
 

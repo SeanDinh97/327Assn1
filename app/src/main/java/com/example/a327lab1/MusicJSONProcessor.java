@@ -12,6 +12,9 @@ import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+/**
+ * Class that processess the music list from JSON file.
+ */
 public class MusicJSONProcessor {
     private Context context;
     private ArrayList<Music> listOfMusic;

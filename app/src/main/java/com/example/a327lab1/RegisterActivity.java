@@ -60,6 +60,9 @@ public class RegisterActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * UI view of the Register Page.
+     */
     private void initUIViews() {
         userName = (EditText)findViewById(R.id.etUserName);
         userPassword = (EditText)findViewById(R.id.etUserPassword);

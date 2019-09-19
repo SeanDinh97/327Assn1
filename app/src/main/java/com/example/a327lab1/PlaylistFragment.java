@@ -19,7 +19,7 @@ import com.example.a327lab1.models.Playlist;
 import java.util.ArrayList;
 
 /**
- * Activity's user interface of the Play List.
+ * Class to show activity's of the user interface play list.
  */
 public class PlaylistFragment extends Fragment {
 
@@ -34,7 +34,13 @@ public class PlaylistFragment extends Fragment {
 
     private FloatingActionButton addPlaylistBtn;
 
-
+    /**
+     * OnCreateView method for the playlist fragements.
+     * @param inflater inflater view
+     * @param container view container
+     * @param savedInstanceState state of the emulator
+     * @return
+     */
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -55,6 +61,9 @@ public class PlaylistFragment extends Fragment {
         return view;
     }
 
+    /**
+     * View attributes of the music list.
+     */
     private void initAttributes() {
         userJSONProcessor = new UserJSONProcessor(getContext());
         userName = getActivity().getIntent().getExtras().getString("name");
@@ -62,10 +71,18 @@ public class PlaylistFragment extends Fragment {
         playlistNames = getPlaylistNames(listOfPlaylists);
     }
 
+    /**
+     * UI view of the playlist.
+     * @param view playlist page list
+     */
     private void initUIViews(View view) {
         addPlaylistBtn = view.findViewById(R.id.btnAddPlaylist);
     }
 
+    /**
+     * recycle view of the music list.
+     * @param view id of the music list
+     */
     private void initRecyclerView(View view) {
         Log.d(TAG, "initRecyclerView: init recyclerview.");
 
@@ -75,6 +92,11 @@ public class PlaylistFragment extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager( view.getContext()));
     }
 
+    /**
+     * Getter method for the playlist name.
+     * @param list of playlist names
+     * @return playlist names
+     */
     private ArrayList<String> getPlaylistNames(ArrayList<Playlist> list) {
         ArrayList<String> nameList = new ArrayList<String>();
         for (Playlist playlist : list) {
@@ -83,6 +105,12 @@ public class PlaylistFragment extends Fragment {
         return nameList;
     }
 
+    /**
+     * Activity result method to find the result of the palylist.
+     * @param requestCode code request
+     * @param resultCode code result
+     * @param data intent data
+     */
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);

@@ -19,6 +19,9 @@ import com.example.a327lab1.models.Music;
 
 import java.util.ArrayList;
 
+/**
+ * Adapter class to add music to playlist.
+ */
 public class AddMusicToPlaylistAdapter extends RecyclerView.Adapter<AddMusicToPlaylistAdapter.ViewHolder>{
 
     private static final String TAG = "AddMusicAdapter";
@@ -30,6 +33,13 @@ public class AddMusicToPlaylistAdapter extends RecyclerView.Adapter<AddMusicToPl
     private Music music;
     private Context context;
 
+    /**
+     * Constructor for the music to playlist.
+     * @param userName user
+     * @param playlistNames playlist's name
+     * @param music music
+     * @param context
+     */
     public AddMusicToPlaylistAdapter(String userName, ArrayList<String> playlistNames, Music music, Context context) {
         this.userName = userName;
         this.playlistNames = playlistNames;
@@ -38,6 +48,12 @@ public class AddMusicToPlaylistAdapter extends RecyclerView.Adapter<AddMusicToPl
         this.userJSONProcessor = new UserJSONProcessor(context);
     }
 
+    /**
+     * View holder method for music to playlist.
+     * @param parent
+     * @param viewType
+     * @return
+     */
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -46,6 +62,11 @@ public class AddMusicToPlaylistAdapter extends RecyclerView.Adapter<AddMusicToPl
         return holder;
     }
 
+    /**
+     * BindViewHolder method to add music to playlist
+     * @param holder viewholder
+     * @param position position of the music into playlist.
+     */
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
         Log.d(TAG, "onBindViewHolder: called.");
@@ -69,22 +90,37 @@ public class AddMusicToPlaylistAdapter extends RecyclerView.Adapter<AddMusicToPl
         });
     }
 
+    /**
+     * Get te size of the playlist
+     * @return playlist's size
+     */
     @Override
     public int getItemCount() {
         return playlistNames.size();
     }
 
+    /**
+     * remove playlist's position
+     * @param position playlist's position
+     */
     public void removeAt(int position) {
         playlistNames.remove(position);
         notifyItemRemoved(position);
         notifyItemRangeChanged(position, playlistNames.size());
     }
 
+    /**
+     * View Holder for the recycler view.
+     */
     public class ViewHolder extends RecyclerView.ViewHolder {
         ImageView image;
         TextView name;
         RelativeLayout parentLayout;
 
+        /**
+         * View Holder for the emulator.
+         * @param itemView
+         */
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             image = itemView.findViewById(R.id.playlist_image);

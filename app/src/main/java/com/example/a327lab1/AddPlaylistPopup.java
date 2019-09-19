@@ -9,6 +9,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+/**
+ * Class that displays a pop up of the playlist.
+ */
 public class AddPlaylistPopup extends AppCompatActivity {
     private UserJSONProcessor userJSONProcessor;
 
@@ -16,6 +19,10 @@ public class AddPlaylistPopup extends AppCompatActivity {
     private Button okBtn;
     private Button cancelbtn;
 
+    /**
+     * Method to initialize the state.
+     * @param savedInstanceState state of the pop playlist creation.
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,6 +49,9 @@ public class AddPlaylistPopup extends AppCompatActivity {
 
         okBtn.setOnClickListener(new View.OnClickListener() {
             @Override
+            /**
+             * OnClick method for the pop up playlist creation.
+             */
             public void onClick(View view) {
                 String playlistName = newPlaylistName.getText().toString();
                 if (!playlistName.isEmpty()) {
@@ -56,6 +66,9 @@ public class AddPlaylistPopup extends AppCompatActivity {
         });
     }
 
+    /**
+     * UI view of the pop up of the add to playlist popup.
+     */
     private void initUIViews() {
         newPlaylistName = findViewById(R.id.et_playlist_name_input);
         okBtn = findViewById(R.id.btnAddPlaylist_OK);

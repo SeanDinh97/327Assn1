@@ -42,6 +42,13 @@ public class MusicListFragment extends Fragment {
     private int endPageIndex;
     private String userName;
 
+    /**
+     * OnCreateView method for the music list fragements.
+     * @param inflater
+     * @param container
+     * @param savedInstanceState
+     * @return
+     */
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -86,6 +93,11 @@ public class MusicListFragment extends Fragment {
         });
 
         searchEntry.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            /**
+             * Search method.
+             * @param s string
+             * @return page view
+             */
             @Override
             public boolean onQueryTextSubmit(String s) {
                 searchList = getSearchMusicList(s);
@@ -112,6 +124,9 @@ public class MusicListFragment extends Fragment {
         return view;
     }
 
+    /**
+     * View attributes of the music list.
+     */
     private void initAttributes() {
         userName = getActivity().getIntent().getExtras().getString("name");
         musicList = musicJSONProcessor.getListOfMusic();
@@ -122,6 +137,10 @@ public class MusicListFragment extends Fragment {
         totalMusic.setText(String.valueOf(searchList.size()));
     }
 
+    /**
+     * UI view of the music list.
+     * @param view music page list
+     */
     private void initUIViews(View view) {
         pageNumber = view.findViewById(R.id.tv_page_number);
         leftBtn = view.findViewById(R.id.iv_left_page);
@@ -130,24 +149,40 @@ public class MusicListFragment extends Fragment {
         totalMusic = view.findViewById(R.id.tv_total_songs);
     }
 
+    /**
+     * recycle view of the music list.
+     * @param view id of the music list
+     */
     private void initRecyclerView(View view) {
         Log.d(TAG, "initRecyclerView: initRecyclerView");
 
         recyclerView = view.findViewById(R.id.recycler_view_music_list);
     }
 
+    /**
+     * update recycle view method.
+     * @param view view of the music list
+     */
     private void updateRecyclerView(View view) {
         MusicListAdapter adapter = new MusicListAdapter(getContext(), musicPageList, userName);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager((new LinearLayoutManager(getContext())));
     }
 
+    /**
+     * Method to update the page number
+     */
     private void updatePageNumberView() {
         int startPageNumber = pageIndex + 1;
         String pageNumberString = startPageNumber + " - " + endPageIndex;
         pageNumber.setText(pageNumberString);
     }
 
+    /**
+     * Getter method of the music search list.
+     * @param search search list
+     * @return the search result of the music list
+     */
     private ArrayList<Music> getSearchMusicList(String search) {
         ArrayList<Music> searchArray = new ArrayList<Music>();
         for (int i = 0 ; i < musicList.size() ; i++) {

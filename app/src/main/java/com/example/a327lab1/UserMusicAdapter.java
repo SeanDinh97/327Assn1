@@ -18,6 +18,9 @@ import com.example.a327lab1.models.Music;
 
 import java.util.ArrayList;
 
+/**
+ * Class to display the list of music and info.
+ */
 public class UserMusicAdapter extends RecyclerView.Adapter<UserMusicAdapter.ViewHolder> {
 
     private static final String TAG = "UserMusicAdapter";
@@ -28,7 +31,7 @@ public class UserMusicAdapter extends RecyclerView.Adapter<UserMusicAdapter.View
     private String currentlyPlaying;
 
     /**
-     * Shows the list of the music in the User's playlist.
+     * Constructor method. Shows the list of the music in the User's playlist.
      * @param context
      * @param listOfMusic
      */
@@ -37,6 +40,12 @@ public class UserMusicAdapter extends RecyclerView.Adapter<UserMusicAdapter.View
         this.context = context;
     }
 
+    /**
+     * OnCreate view holder for UserMusicAdapter
+     * @param parent parent view
+     * @param viewType view type
+     * @return view of the user's music
+     */
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -45,6 +54,11 @@ public class UserMusicAdapter extends RecyclerView.Adapter<UserMusicAdapter.View
         return holder;
     }
 
+    /**
+     * Method to bind the ViewHolder in UserMusicAdapter
+     * @param holder user music info
+     * @param position position in the list
+     */
     @Override
     public void onBindViewHolder(@NonNull UserMusicAdapter.ViewHolder holder, final int position) {
         Log.d(TAG, "onBindViewHolder: called.");
@@ -55,6 +69,9 @@ public class UserMusicAdapter extends RecyclerView.Adapter<UserMusicAdapter.View
 
         holder.parentLayout.setOnClickListener(new View.OnClickListener() {
             @Override
+            /**
+             * Onclick for the user music.
+             */
             public void onClick(View view) {
                 //Play the music!
                 Log.d(TAG, "onClick: clicked on: " + listOfMusic.get(position).getSongTitle());
@@ -90,17 +107,28 @@ public class UserMusicAdapter extends RecyclerView.Adapter<UserMusicAdapter.View
         });
     }
 
+    /**
+     * Getter method for the list of music.
+     * @return list of music
+     */
     @Override
     public int getItemCount() {
         return listOfMusic.size();
     }
 
+    /**
+     * Method to hold the recycle view of the user music.
+     */
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnCreateContextMenuListener  {
         TextView title;
         TextView artist;
         TextView date;
         RelativeLayout parentLayout;
 
+        /**
+         * User music information
+         * @param itemView item view of user music
+         */
         public ViewHolder(View itemView) {
             super(itemView);
             title = itemView.findViewById(R.id.tv_user_music_title);
@@ -111,6 +139,12 @@ public class UserMusicAdapter extends RecyclerView.Adapter<UserMusicAdapter.View
             itemView.setOnCreateContextMenuListener(this);
         }
 
+        /**
+         * Method for the onclick menu option.
+         * @param menu menu
+         * @param v view of the menu
+         * @param menuInfo menu info
+         */
         @Override
         public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
             menu.setHeaderTitle("Select The Action");
@@ -119,6 +153,9 @@ public class UserMusicAdapter extends RecyclerView.Adapter<UserMusicAdapter.View
             removeSong.setOnMenuItemClickListener(onEditMenu);
         }
 
+        /**
+         * On click listener for the user music menu.
+         */
         private final MenuItem.OnMenuItemClickListener onEditMenu = new MenuItem.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
