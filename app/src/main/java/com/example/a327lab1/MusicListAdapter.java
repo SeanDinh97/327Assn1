@@ -23,7 +23,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
- * Shows the recycle view of the music list.
+ * Classs to show the recycle view of the music list.
  */
 public class MusicListAdapter extends RecyclerView.Adapter<MusicListAdapter.ViewHolder> {
 
@@ -34,6 +34,12 @@ public class MusicListAdapter extends RecyclerView.Adapter<MusicListAdapter.View
     private Context context;
     private String currentlyPlaying;
 
+    /**
+     * Constructor method for the Music List Adapter.
+     * @param context music context
+     * @param listOfMusic music list
+     * @param userName user
+     */
     public MusicListAdapter(Context context, ArrayList<Music> listOfMusic, String userName) {
         this.listOfMusic = listOfMusic;
         this.userName = userName;
@@ -41,6 +47,12 @@ public class MusicListAdapter extends RecyclerView.Adapter<MusicListAdapter.View
         this.currentlyPlaying = "";
     }
 
+    /**
+     * OnCreate view holder for MusicListAdapter
+     * @param parent parent view
+     * @param viewType view type
+     * @return the view of the music list.
+     */
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -49,6 +61,11 @@ public class MusicListAdapter extends RecyclerView.Adapter<MusicListAdapter.View
         return holder;
     }
 
+    /**
+     * Method to bind the ViewHolder in MusicListAdapter
+     * @param holder music info
+     * @param position position in the list
+     */
     @Override
     public void onBindViewHolder(@NonNull MusicListAdapter.ViewHolder holder, final int position) {
         Log.d(TAG, "onBindViewHolder: called.");
@@ -87,17 +104,28 @@ public class MusicListAdapter extends RecyclerView.Adapter<MusicListAdapter.View
         });
     }
 
+    /**
+     * Get method to get the count of items.
+     * @return List of music
+     */
     @Override
     public int getItemCount() {
         return listOfMusic.size();
     }
 
+    /**
+     * View Holder for the Music List Adapter that extends from the Recycle View.
+     */
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnCreateContextMenuListener {
         TextView title;
         TextView artist;
         TextView terms;
         RelativeLayout parentLayout;
 
+        /**
+         * View Holder for the Music List Adapter.
+         * @param itemView music information
+         */
         public ViewHolder(View itemView) {
             super(itemView);
             title = itemView.findViewById(R.id.tv_music_title);
@@ -108,6 +136,12 @@ public class MusicListAdapter extends RecyclerView.Adapter<MusicListAdapter.View
             itemView.setOnCreateContextMenuListener(this);
         }
 
+        /**
+         * Method to create a pop up menu to add songs.
+         * @param menu menu of the pop up
+         * @param v view of the menu
+         * @param menuInfo menu info
+         */
         @Override
         public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
             menu.setHeaderTitle("Select The Action");
@@ -116,6 +150,9 @@ public class MusicListAdapter extends RecyclerView.Adapter<MusicListAdapter.View
             addSong.setOnMenuItemClickListener(onEditMenu);
         }
 
+        /**
+         * OnClick Listener for the menu item to add music to playlist activity.
+         */
         private final MenuItem.OnMenuItemClickListener onEditMenu = new MenuItem.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem item) {

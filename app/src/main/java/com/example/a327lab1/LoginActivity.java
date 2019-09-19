@@ -11,6 +11,9 @@ import android.widget.Toast;
 
 import com.example.a327lab1.models.User;
 
+/**
+ * Login Class Activity.
+ */
 public class LoginActivity extends AppCompatActivity {
 
     private UserJSONProcessor userJSONProcessor;
@@ -61,6 +64,10 @@ public class LoginActivity extends AppCompatActivity {
         });
 
     }
+
+    /**
+     * UI view of Login.
+     */
     private void initUIViews() {
         userName = (EditText)findViewById(R.id.etUserName);
         userPassword = (EditText)findViewById(R.id.etUserPassword);

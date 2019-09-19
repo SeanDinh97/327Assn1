@@ -13,6 +13,9 @@ import com.example.a327lab1.models.User;
 
 import java.util.ArrayList;
 
+/**
+ * Activity class to add music to playlist.
+ */
 public class AddMusicToPlaylistActivity extends AppCompatActivity {
 
     private static final String TAG = "AddMusicToPlaylist";
@@ -26,6 +29,10 @@ public class AddMusicToPlaylistActivity extends AppCompatActivity {
     private ArrayList<Playlist> userListOfPlaylists;
     private ArrayList<String> playlistNames;
 
+    /**
+     * Save the instance of the music to playlisy.
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,6 +45,9 @@ public class AddMusicToPlaylistActivity extends AppCompatActivity {
         initRecyclerView();
     }
 
+    /**
+     * Constructor method for add music to playlist.
+     */
     private void initAttributes() {
         userName = getIntent().getExtras().getString("userName");
         music = (Music)getIntent().getSerializableExtra("music");
@@ -48,6 +58,9 @@ public class AddMusicToPlaylistActivity extends AppCompatActivity {
     private void initUIViews() {
     }
 
+    /**
+     * Recycle view to add music to playlist.
+     */
     private void initRecyclerView() {
         Log.d(TAG, "initRecyclerView: init recyclerview.");
 
@@ -57,6 +70,11 @@ public class AddMusicToPlaylistActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
     }
 
+    /**
+     * List of playlist
+     * @param list playlist
+     * @return list of playlist
+     */
     private ArrayList<String> getPlaylistNames(ArrayList<Playlist> list) {
         ArrayList<String> nameList = new ArrayList<String>();
         for (Playlist playlist : list) {
