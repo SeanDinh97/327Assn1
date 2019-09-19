@@ -34,4 +34,6 @@ public class Playlist {
     public void addMusicToPlaylist(Music music) {
         listOfMusic.add(music);
     }
+
+    public void deleteMusicFromPlaylist(int index) { listOfMusic.remove(index); }
 }

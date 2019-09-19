@@ -191,6 +191,23 @@ public class UserJSONProcessor {
         return new ArrayList<Music>();
     }
 
+    public void deleteMusicFromPlaylist(String userName, String playlistName, String musicID) {
+        for (int i = 0 ; i < listOfUsers.size() ; i++) {
+            if (listOfUsers.get(i).getNameOnly().equals(userName)) {
+                for (int j = 0 ; j < listOfUsers.get(i).getListOfPlaylists().size() ; j++) {
+                    if (listOfUsers.get(i).getListOfPlaylists().get(j).getPlaylistName().equals(playlistName)) {
+                        for (int k = 0 ; k < listOfUsers.get(i).getListOfPlaylists().get(j).getListOfMusic().size() ; k++) {
+                            if (listOfUsers.get(i).getListOfPlaylists().get(j).getListOfMusic().get(k).getRelease().getId().equals(musicID)) {
+                                listOfUsers.get(i).getListOfPlaylists().get(j).deleteMusicFromPlaylist(k);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        writeUsersToJSON();
+    }
+
     /**
      * Getter method for listOfUsers
      * @return  Array of users

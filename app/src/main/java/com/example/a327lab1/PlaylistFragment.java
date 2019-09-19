@@ -3,12 +3,14 @@ package com.example.a327lab1;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.helper.ItemTouchHelper;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,6 +19,7 @@ import android.view.ViewGroup;
 import com.example.a327lab1.models.Playlist;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 /**
  * Class to show activity's of the user interface play list.
@@ -26,6 +29,8 @@ public class PlaylistFragment extends Fragment {
     private static final String TAG = "PlaylistFragment";
 
     private UserJSONProcessor userJSONProcessor;
+
+    private PlaylistAdapter adapter;
 
     private String userName;
     private ArrayList<Playlist> listOfPlaylists;
@@ -59,6 +64,25 @@ public class PlaylistFragment extends Fragment {
             }
         });
         return view;
+
+//        ItemTouchHelper helper = new ItemTouchHelper(new ItemTouchHelper.SimpleCallback( ItemTouchHelper.UP | ItemTouchHelper.DOWN, 0) {
+//            @Override
+//            public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder dragged, @NonNull RecyclerView.ViewHolder target) {
+//                int position_dragged = dragged.getAdapterPosition();
+//                int position_target = target.getAdapterPosition();
+//
+//                Collections.swap(listOfPlaylists, position_dragged, position_target);
+//                Collections.swap(playlistNames, position_dragged, position_target);
+//
+//                adapter.notifyItemMoved(position_dragged, position_target);
+//                return false;
+//            }
+//
+//            @Override
+//            public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int i) {
+//
+//            }
+//        })
     }
 
     /**
@@ -87,7 +111,7 @@ public class PlaylistFragment extends Fragment {
         Log.d(TAG, "initRecyclerView: init recyclerview.");
 
         RecyclerView recyclerView = view.findViewById(R.id.recycler_view_playlist);
-        PlaylistAdapter adapter = new PlaylistAdapter( userName, playlistNames, view.getContext());
+        adapter = new PlaylistAdapter( userName, playlistNames, view.getContext());
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager( view.getContext()));
     }

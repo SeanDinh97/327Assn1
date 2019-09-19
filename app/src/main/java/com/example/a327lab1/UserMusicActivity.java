@@ -60,7 +60,7 @@ public class UserMusicActivity extends AppCompatActivity {
         Log.d(TAG, "initRecyclerView: initRecyclerView");
 
         RecyclerView recyclerView = findViewById(R.id.recycler_view_user_music);
-        UserMusicAdapter adapter = new UserMusicAdapter(this, userMusicList);
+        UserMusicAdapter adapter = new UserMusicAdapter(this, userMusicList, playlistName, userName);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager((new LinearLayoutManager(this)));
     }

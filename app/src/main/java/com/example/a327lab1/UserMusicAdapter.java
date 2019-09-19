@@ -27,6 +27,8 @@ public class UserMusicAdapter extends RecyclerView.Adapter<UserMusicAdapter.View
 
     private MediaPlayer mp;
     private ArrayList<Music> listOfMusic;
+    private String playlistName;
+    private String userName;
     private Context context;
     private String currentlyPlaying;
 
@@ -35,9 +37,11 @@ public class UserMusicAdapter extends RecyclerView.Adapter<UserMusicAdapter.View
      * @param context
      * @param listOfMusic
      */
-    public UserMusicAdapter(Context context, ArrayList<Music> listOfMusic) {
+    public UserMusicAdapter(Context context, ArrayList<Music> listOfMusic, String playlistName, String userName) {
         this.listOfMusic = listOfMusic;
         this.context = context;
+        this.playlistName = playlistName;
+        this.userName = userName;
     }
 
     /**
@@ -117,6 +121,16 @@ public class UserMusicAdapter extends RecyclerView.Adapter<UserMusicAdapter.View
     }
 
     /**
+     * Method to remove a playlist at a specific position.
+     * @param position of the playlist
+     */
+    public void removeAt(int position) {
+        listOfMusic.remove(position);
+        notifyItemRemoved(position);
+        notifyItemRangeChanged(position, listOfMusic.size());
+    }
+
+    /**
      * Method to hold the recycle view of the user music.
      */
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnCreateContextMenuListener  {
@@ -164,6 +178,11 @@ public class UserMusicAdapter extends RecyclerView.Adapter<UserMusicAdapter.View
                     case 1:
                         //Implement Remove song from playlist feature
                         Toast.makeText(context, "Implement Remove Song From Playlist function", Toast.LENGTH_SHORT).show();
+                        int musicIndex = getAdapterPosition();
+                        String musicID = listOfMusic.get(musicIndex).getRelease().getId();
+                        UserJSONProcessor userJSONProcessor = new UserJSONProcessor(context);
+                        userJSONProcessor.deleteMusicFromPlaylist(userName,playlistName,musicID);
+                        removeAt(musicIndex);
                         break;
                 }
                 return true;
