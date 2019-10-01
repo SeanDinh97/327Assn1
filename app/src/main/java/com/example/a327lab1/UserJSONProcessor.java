@@ -191,6 +191,12 @@ public class UserJSONProcessor {
         return new ArrayList<Music>();
     }
 
+    /**
+     * Deletes music from playlist
+     * @param userName  Username
+     * @param playlistName  Playlist Name
+     * @param musicID   Music (Released) ID
+     */
     public void deleteMusicFromPlaylist(String userName, String playlistName, String musicID) {
         for (int i = 0 ; i < listOfUsers.size() ; i++) {
             if (listOfUsers.get(i).getNameOnly().equals(userName)) {
@@ -206,6 +212,24 @@ public class UserJSONProcessor {
             }
         }
         writeUsersToJSON();
+    }
+
+    /**
+     * Renames playlist
+     * @param userName     Username
+     * @param playlistName  PlaylistName
+     * @param newPlaylistName
+     */
+    public void renamePlaylistName(String userName, String playlistName, String newPlaylistName) {
+        for (int i = 0 ; i < listOfUsers.size() ; i++) {
+            if (listOfUsers.get(i).getNameOnly().equals(userName)) {
+                for (int j = 0 ; j < listOfUsers.get(i).getListOfPlaylists().size() ; j++) {
+                    if (listOfUsers.get(i).getListOfPlaylists().get(j).getPlaylistName().equals(playlistName)) {
+                        listOfUsers.get(i).getListOfPlaylists().get(j).setPlaylistName(newPlaylistName);
+                    }
+                }
+            }
+        }
     }
 
     /**

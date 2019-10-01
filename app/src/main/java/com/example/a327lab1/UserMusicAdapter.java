@@ -101,14 +101,6 @@ public class UserMusicAdapter extends RecyclerView.Adapter<UserMusicAdapter.View
                 }
             }
         });
-
-        holder.parentLayout.setOnLongClickListener(new View.OnLongClickListener() {
-            @Override
-            public boolean onLongClick(View view) {
-                //Open menu: 1.Remove song from playlist
-                return false;
-            }
-        });
     }
 
     /**
