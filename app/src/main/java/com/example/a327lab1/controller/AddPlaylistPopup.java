@@ -1,4 +1,4 @@
-package com.example.a327lab1;
+package com.example.a327lab1.controller;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -8,6 +8,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import com.example.a327lab1.R;
 
 /**
  * Class that displays a pop up of the playlist.

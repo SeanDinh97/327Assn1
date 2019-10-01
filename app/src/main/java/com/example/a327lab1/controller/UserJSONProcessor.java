@@ -1,4 +1,4 @@
-package com.example.a327lab1;
+package com.example.a327lab1.controller;
 
 import android.content.Context;
 

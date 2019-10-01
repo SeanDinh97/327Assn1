@@ -1,25 +1,23 @@
-package com.example.a327lab1;
+package com.example.a327lab1.controller;
 
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.helper.ItemTouchHelper;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.a327lab1.R;
 import com.example.a327lab1.models.Playlist;
 
 import java.util.ArrayList;
-import java.util.Collections;
 
 /**
  * Class to show activity's of the user interface play list.

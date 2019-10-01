@@ -1,4 +1,4 @@
-package com.example.a327lab1;
+package com.example.a327lab1.controller;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -13,6 +13,7 @@ import android.widget.ImageView;
 import android.widget.SearchView;
 import android.widget.TextView;
 
+import com.example.a327lab1.R;
 import com.example.a327lab1.models.Music;
 
 import java.util.ArrayList;

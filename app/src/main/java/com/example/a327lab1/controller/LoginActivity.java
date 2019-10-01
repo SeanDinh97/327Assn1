@@ -1,4 +1,4 @@
-package com.example.a327lab1;
+package com.example.a327lab1.controller;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,6 +9,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.a327lab1.R;
 import com.example.a327lab1.models.User;
 
 /**

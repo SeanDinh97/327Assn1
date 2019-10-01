@@ -1,4 +1,4 @@
-package com.example.a327lab1;
+package com.example.a327lab1.controller;
 
 import android.content.Context;
 import android.media.MediaPlayer;
@@ -14,6 +14,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.a327lab1.R;
 import com.example.a327lab1.models.Music;
 
 import java.util.ArrayList;

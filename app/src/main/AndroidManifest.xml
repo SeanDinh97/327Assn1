@@ -9,10 +9,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".AddMusicToPlaylistActivity"></activity>
-        <activity android:name=".UserMusicActivity" />
+        <activity android:name=".controller.AddMusicToPlaylistActivity"></activity>
+        <activity android:name=".controller.UserMusicActivity" />
         <activity
-            android:name=".SplashActivity"
+            android:name=".controller.SplashActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -21,16 +21,16 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".LoginActivity"
+            android:name=".controller.LoginActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".RegisterActivity"
+            android:name=".controller.RegisterActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".MainActivity"
+            android:name=".controller.MainActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".AddPlaylistPopup"
+            android:name=".controller.AddPlaylistPopup"
             android:theme="@style/AppTheme.PopupWindow" />
     </application>
 
